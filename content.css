@@ -1,0 +1,68 @@
+.su-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483647;
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  padding: 3px 5px;
+  font-family: ui-monospace, 'Cascadia Code', 'Consolas', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  opacity: 0.25;
+  transition: opacity 0.12s ease;
+  pointer-events: auto;
+  user-select: none;
+  -webkit-user-select: none;
+  will-change: transform;
+  line-height: 1;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.4);
+}
+
+.su-wrap:hover {
+  opacity: 1;
+}
+
+.su-btn {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 3px;
+  color: #fff;
+  transition: background 0.1s;
+}
+
+.su-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.su-btn:active {
+  background: rgba(255, 255, 255, 0.38);
+  transform: scale(0.9);
+}
+
+.su-val {
+  cursor: pointer;
+  padding: 0 4px;
+  min-width: 38px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  border-radius: 3px;
+  transition: background 0.1s;
+}
+
+.su-val:hover {
+  background: rgba(255, 255, 255, 0.15);
+}

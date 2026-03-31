@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Speed Up",
+  "version": "1.0",
+  "description": "Control video playback speed on any website",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ]
+}
