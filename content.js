@@ -64,14 +64,42 @@
       valEl.textContent = fmt(video.playbackRate);
     });
 
-    // Keyboard shortcuts — active when hovering
+    // Show/hide wrap
+    // visible on mouse move, hidden after IDLE_MS of inactivity or on mouse leave
+    const IDLE_MS = 3000;
     let hovered = false;
-    const onEnter = () => { hovered = true; };
-    const onLeave = () => { hovered = false; };
+    let hideTimer = null;
+
+    const show = () => wrap.classList.add('su-active');
+    const hide = () => wrap.classList.remove('su-active');
+
+    const scheduleHide = (delay = IDLE_MS) => {
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(hide, delay);
+    };
+
+    const onEnter = () => {
+      hovered = true;
+      show();
+      scheduleHide();
+    };
+
+    const onLeave = () => {
+      hovered = false;
+      scheduleHide(120);
+    };
+
+    const onMove = () => {
+      if (!hovered) return;
+      show();
+      scheduleHide();
+    };
+
     video.addEventListener('mouseenter', onEnter);
     video.addEventListener('mouseleave', onLeave);
-    wrap.addEventListener('mouseenter', onEnter);
-    wrap.addEventListener('mouseleave', onLeave);
+    video.addEventListener('mousemove', onMove);
+    wrap.addEventListener('mouseenter', () => { clearTimeout(hideTimer); show(); });
+    wrap.addEventListener('mouseleave', () => { if (hovered) scheduleHide(); else scheduleHide(120); });
 
     document.addEventListener('keydown', (e) => {
       if (!hovered) return;
