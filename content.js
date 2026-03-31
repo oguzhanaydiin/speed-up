@@ -89,6 +89,7 @@
       rafId = null;
 
       if (!document.contains(video)) {
+        tracked.delete(video);
         wrap.remove();
         ro.disconnect();
         return;
@@ -142,4 +143,7 @@
   });
 
   mo.observe(document.documentElement, { childList: true, subtree: true });
+
+  // SPA navigation
+  window.addEventListener('yt-navigate-finish', scanVideos);
 })();
